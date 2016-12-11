@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Share your ideas and find co-workers!</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/styles/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <header id="page-header">
+        <% include templates/nav.ejs %>
+        <% if(user) { %> 
+            <% include templates/bar.ejs %>
+        <% } %>
+        <h1>FIND YOUR PARTNERS</h1>
+        <p>Share your idea and find your perfect co-workers to start making it real.</p>
+        <div id="buttons">
+        <a href="/project/share-idea">Share Idea</a>
+        <a href="/project/find-work">Find Work</a>
+        </div>
+        </header>
+        
+    <article id = "info">
+        <h1>Start your project now...</h1>
+        <ul type='none'>
+            <li>
+                <div id="share-pic" >
+                    <div class='background'></div>
+                    <h2>SHARE</h2>
+                    <blockquote>Share your idea.</blockquote>
+                </div>
+            </li>
+            <li>
+                <div id="team-pic">
+                    <div class='background'></div>
+                    <h2>FIND</h2>
+                    <blockquote>Find your colleagues.</blockquote>
+                </div>
+            </li>
+            <li>
+                <div id="communicate-pic">
+                    <div class='background'></div>
+                    <h2>WORK</h2>
+                    <blockquote>Work with partners and build your project.</blockquote>
+                </div>
+            </li>
+            <li>
+                  <div id="release-pic">
+                    <div class='background'></div>
+                      <h2>RELEASE</h2>
+                      <blockquote>Release your project to the world.</blockquote>
+                  </div>            
+            </li>
+        </ul>
+
+    </article>
+        
+    <% include templates/footer.ejs %>
+        
+    <div id="form-login">
+        <h1>Login <span id="close-form-login" ></span></h1>
+        <hr>
+        <form method="post" action="/auth/signIn">
+            <label for="email">E-mail</label>
+            <br>
+            <input type="email" name="email" required>
+            <br>
+            <label for="password">Password</label>
+            <br>
+            <input type="password" name="password" required>
+            <br>
+            <input type="submit" value="Log in">
+        </form>
+        <a href='/auth/facebook' id="facebook-login"> Login with Facebook </a>
+        
+    </div>
+    
+    <div id="form-signup">
+        <h1>Sign Up <span id="close-form-signup" ></span></h1>
+        <hr>
+        <form method="post" action="/auth/SignUp">
+            <label for="email">E-mail</label>
+            <br>
+            <input type="email" name="email" required>
+            <br>
+            <label for="password">Password</label>
+            <br>
+            <input type="password" name="password" required>
+            <br>
+            <label for="confirmPassword">Confirm password</label>
+            <br>
+            <input type="password" name="confirmPassword" required>
+            <br>
+            <input type="submit" value="Sign up">
+        </form>
+        <a href='/auth/facebook' id="facebook-login"> Login with Facebook </a>
+    </div>
+        
+      <script src='../scripts/forms.js'></script>
+    </body>
+
+</html>

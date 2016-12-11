@@ -1,0 +1,158 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+ margin: 0;
+ padding: 0;
+ border: 0;
+ font-size: 100%;
+ vertical-align: baseline;
+}
+@font-face {
+    src: url("../fonts/Exo2-RegularCondensed.otf");
+     font-family:"exo2-regular";
+}
+@font-face {
+    src: url("../fonts/Exo2-SemiBoldCondensed.otf");
+     font-family:"exo2-semibold";
+}
+body {
+     font-family:"exo2-regular";
+}
+main {
+    padding-bottom: 50px;
+    padding-top: 120px;
+    width: 100%;
+    height: 1700px;
+    background: url(../images/background-profile.jpg);
+    background-size: cover;
+}
+#container {
+    border-radius: 5px;
+    padding:50px;
+    margin:0 auto;
+    height: 95%;
+    width: 600px;
+    background-color: rgba(221,221,221,0.7);
+}
+#profile-image {
+    margin-bottom: 20px;
+    margin-left: 73.5px;
+    display: inline-block;
+    border: 9px solid;
+    border-color: #B53A28;
+    border-radius: 5px;
+    height:150px;
+    width: 135px;
+}
+#profile-image img {
+    height:inherit;
+    width: inherit;
+}
+#inputs {
+    margin-left: 150px;
+}
+#inputs input[type='text'], input[type='email'], input[type='password'], input[type='number'], input[type='tel'],select {
+    width:300px;
+}
+label {
+    color:#b53a28;
+    font-size:20px;
+}
+input, select {
+    font-size:20px;
+    margin-bottom: 10px;
+}
+textarea {
+    
+    display: block;
+    font-size: 15px;
+    width: 300px;
+    height: 120px;
+    resize:none;
+    overflow:auto;
+}
+input[type='submit'] {
+    border:0px;
+    background-color:#b53a28;
+    width:150px;
+    height: 60px;
+    margin-left:75px;
+    transition: 0.5s ease;
+    font-family: "exo2-regular";
+}
+input[type='submit']:hover {
+    cursor: pointer;
+    background-color: black;
+    color:#b53a28;
+}
+
+input[type='file'] {
+    font-size:15px;
+}
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+@media only screen
+and (min-width : 320px) 
+and (max-width : 800px),
+screen and (-webkit-min-device-pixel-ratio: 2){ 
+    
+    main {
+       height: auto;
+     }
+
+    #container {
+        height: auto;
+        width: 80%;
+    }
+    #profile-image {
+        height:250px;
+        width: 235px;
+    }
+    #inputs input[type='text'], input[type='email'], input[type='password'], input[type='number'], input[type='tel'],select {
+        width: 80%;
+        height: 50px;
+        font-size: 40px;
+    }
+    label {
+        font-size:60px;
+    }
+    textarea {
+        display: block;
+        font-size: 40px;
+        width: 80%;
+        height: 300px;
+    }
+    input[type='submit'] {
+        width: 230px;
+        height: 130px;
+        margin-left: 130px;
+        font-size: 50px;
+        margin-top: 20px;
+    }
+
+    input[type='file'] {
+        font-size:30px;
+    }
+}

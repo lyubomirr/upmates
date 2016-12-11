@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Find Work</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/styles/findWork.css">
+   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
+</head>
+
+<body>
+    <% include templates/nav.ejs %>
+    <% if(user) { %> 
+        <% include templates/bar.ejs %>
+    <% } %>
+    
+    <main>
+        <div id="container">
+            <form action='/project/find-work/success' method="post">
+                <input type='text' name='content' placeholder="Search by content" id='search-content' maxlength="500">
+                <br>
+                <input type='text' name='skills' placeholder="Search by skills" id='search-skills' maxlength="500">
+                <br>
+                <input type='submit' value='Search'>            
+            </form>
+            <hr>
+            <div id='results'>
+                <%for(var i = 0; i < projects.length; i++ ) { %>
+                    <% var b = false; %>
+                    <% var positions = projects[i].positionsRequired.programmer + projects[i].positionsRequired.designer + projects[i].positionsRequired.marketingManager + projects[i].positionsRequired.qualityAssurance + projects[i].positionsRequired.teamLeader + projects[i].positionsRequired.businessAnalyst + projects[i].positionsRequired.other + 1; %>
+                    <% if(projects[i].members.length < positions) { %>
+                        <% for(var j = 0; j != projects[i].members.length; j++ ) { %>
+                                <% if(projects[i].members[j].id == user._id) { %>
+                                    <% b = true; %>
+                                    <% break; %>
+                                <% } %>
+                        <% } %>
+                        <% if(!b) { %>
+                            <a href='/project/id/<%=projects[i]._id%>'>
+                                <div  class="project">
+                                    <p class="title"><%=projects[i].title%></p>
+                                    <p class="description"><%=projects[i].info %></p>
+                                </div>
+                            </a> 
+                       <% } %>
+                    <% } %>
+                <% } %>
+            </div>
+            
+        
+        </div>
+    
+    
+    
+    
+    
+    
+    </main>
+    
+   <% include templates/footer.ejs %>
+    
+<script>
+    var descrp = document.getElementsByClassName("description");
+        for(var i = 0; i< descrp.length; i++) {
+            descrp[i].innerHTML = descrp[i].innerHTML.substr(0,340) + "...";
+        }
+</script>      
+</body>
+
+
+
+
+
+
+</html>

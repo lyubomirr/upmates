@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Project</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/styles/project.css">
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
+    
+</head>
+   
+<body>
+    <% include templates/nav.ejs %>
+    <% if(user) { %> 
+        <% include templates/bar.ejs %>
+    <% } %>
+
+  <main>
+        <div id="container">
+            <div id='poster-info'>
+                <p id='posted-by'>Posted by:</p>
+                <br>
+                
+                <ul type="none" id="main-info">
+                    <li>
+                        <div id="profile-image">
+                            <img src="<%=poster.imageURL%>">
+                        </div>
+                    </li>
+                    <br>
+                    <li id="name"><%=poster.firstName%><br><%=poster.lastName%></li>
+                    <br>
+                    <li id="country"><%=poster.country%></li>
+                    <br>
+                    <li id="position"><%=poster.position%></li>
+                    <br>
+                    <li id="e-mail"><%=poster.email%></li>
+                    <br>
+                    <li id="member-since">
+                        Member since: <br> 
+                        <p id='date'><%=poster.createdOn%></p>
+                    </li>
+                    <br>
+                    <li id="view-profile">
+                        <a href='/profile/id/<%=poster._id%>'>
+                            <button>
+                            View profile
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+                
+            </div>
+            <div id='project-info'>
+                <h3 id='project-title'>
+                    <%=project.title%>
+                </h3>
+                <p id='date-posted'><%=project.createdOn%></p>
+                <br>
+                <span>Project info:</span>
+                <p id='info'>
+                    <%=project.info%>
+                </p>
+                
+                <span>Positions required:</span>
+                <ul id='positions' type='none'>
+                    <% if(project.positionsRequired.programmer > 0) { %>
+                    <li>Programmer - <%=project.positionsRequired.programmer%></li>
+                    <% } %>
+                    
+                    <% if(project.positionsRequired.designer > 0) { %>
+                    <li>Designer - <%=project.positionsRequired.designer%></li>
+                    <% } %>
+                    
+                    <% if(project.positionsRequired.marketingManager > 0) { %>
+                    <li>Marketing Manager - <%=project.positionsRequired.marketingManager%></li>
+                    <% } %>
+                    
+                    <% if(project.positionsRequired.qualityAssurance > 0) { %>
+                    <li>Quality Assurance - <%=project.positionsRequired.qualityAssurance%></li>
+                    <% } %>
+                    
+                    <% if(project.positionsRequired.teamLeader > 0) { %>
+                    <li>Team Leader - <%=project.positionsRequired.teamLeader%></li>
+                    <% } %>
+                    
+                    <% if(project.positionsRequired.businessAnalyst > 0) { %>
+                    <li>Business Analyst - <%=project.positionsRequired.businessAnalyst%></li>
+                    <% } %>
+                    
+                    <% if(project.positionsRequired.other > 0) { %>
+                    <li>Other - <%=project.positionsRequired.other%></li>
+                    <% } %>
+                    
+                </ul>
+                <span>Skills required:</span>
+                <p id='skills-required'>
+                    <%=project.skills%>
+                </p>
+                <% var b = false; %>
+                <% for( var i = 0; i < project.members.length; i++ ) { %>
+                    <% if(project.members[i].id == user._id) {b = true; break;} %>
+                <% } %>
+                <% if(b) { %>
+                    <a href='/project/id/<%=project._id%>/work-page'>
+                    <button id='apply-button'>
+                        Work Page
+                    </button>
+                <% } else { %>
+                    <a href='/project/apply/<%=project._id%>'>
+                    <button id='apply-button'>
+                        Apply
+                    </button>
+                    </a>
+                <% } %>
+            </div>
+        </div>
+  </main>
+
+
+    <% include templates/footer.ejs %>
+    
+    <script>
+        var date = document.getElementById('date-posted');
+        var date2 = document.getElementById('date');
+        
+        date.innerHTML = date.innerHTML.substring(0,15);
+        date2.innerHTML = date.innerHTML.substring(0,15);
+    </script>
+</body>
+
+
+</html>

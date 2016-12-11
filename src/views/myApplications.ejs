@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Project I have applied to</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/styles/currentProjects.css">
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
+</head>
+
+<body>
+    <% include templates/nav.ejs %>
+    <% if(user) { %> 
+        <% include templates/bar.ejs %>
+    <% } %>
+
+
+  <main>
+        <div id="container">
+            <div id="firstdiv">
+                <p id="projectsP"> Projects I Have Applied To</p>
+                <hr>
+            <div id="projects">
+               <% for(var i = 0; i< projects.length; i++) { %>
+                <a href='/project/id/<%=projects[i]._id%>'>
+                    <div class="project">
+                        <p class="title"><%=projects[i].title%></p>
+                        <p class="description"><%=projects[i].info%></p>
+                    </div>
+                </a>
+                 <% } %>
+            </div>
+        </div>
+      </div>
+  </main>
+
+
+    <% include templates/footer.ejs %>
+</body>
+
+<script>
+   var descrp = document.getElementsByClassName("description");
+    for(var i = 0; i< descrp.length; i++) {
+        console.log(descrp[i]);
+        descrp[i].innerHTML = descrp[i].innerHTML.substr(0,250) + "...";
+    }
+      
+</script>
+</html>

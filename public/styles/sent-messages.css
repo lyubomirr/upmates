@@ -1,0 +1,420 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+ margin: 0;
+ padding: 0;
+ border: 0;
+ font-size: 100%;
+ font: inherit;
+ vertical-align: baseline;
+}
+@font-face {
+    src: url("../fonts/Exo2-RegularCondensed.otf");
+     font-family:"exo2-regular";
+}
+@font-face {
+    src: url("../fonts/Exo2-SemiBoldCondensed.otf");
+     font-family:"exo2-semibold";
+}
+body {
+     font-family:"exo2-regular";
+}
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+main{
+	padding-bottom:50px;
+    padding-top:120px;
+	height:530px;
+	width: 100%;
+	background: url("../images/background-messages.jpg");
+	background-size: cover;
+}
+
+#container {
+    padding:0px;
+    margin: 0 auto;
+    height: 100%;
+    width:95%;
+    background-color: rgba(221,221,221,0.7);
+}
+#senders {
+    float:left;
+    border-right: 2px solid white;
+    height: 100%;
+    width:30%;
+    display:inline-block;
+    height:inherit;
+}
+#scroll {
+    overflow: auto;
+    height: 84%;
+}
+#messagebox {
+    text-align: center;
+    float:right;
+    padding:30px;
+    height:100%;
+    width:65%;
+    display: inline-block;
+}
+.message {
+    padding-left: 5px;
+    overflow: hidden;
+    font-size: 20px;
+    width:98.7%;
+    height: 100px;
+    border-bottom: 1px solid white;
+    transition: 0.3s ease;
+}
+.message h3 {
+    color:#b53a28;
+    font-size:35px;
+}
+.message:hover {
+    cursor:pointer;
+    background-color: rgba(221,221,221,1);
+}
+#messagebox span {
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+#messagebox span h2 {
+    font-size:30px;
+    color:#b53a28;
+    display: inline;
+}
+#messagebox h3 {
+    margin-top:20px;
+    display: inline-block;
+    margin-bottom: 20px;
+    color:#b53a28;
+    font-size: 25px;
+}
+#messagebox hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+#message-text {
+    word-wrap: break-word;
+    text-align: justify;
+    display: inline-block;
+    width:100%;
+    height:50%;
+    overflow:auto;
+    margin-bottom: -10px;
+}
+
+#messageBox {
+    font-family: "exo2-regular";
+    border-radius: 5px;
+    padding: 50px;
+    padding-top: 20px;
+    display: none;
+    position: fixed;
+    margin-left: -385px;
+    margin-top: 35px;
+    font-size:20px;
+    width: 700px;
+    height: 480px;
+    background-color: rgba(0, 0, 0, 0.95);
+    left:50%;
+    color:white;
+    top:0px;
+    text-align: left;
+    z-index: 2;
+}
+#messageBox #wrapper {
+    width: 98%;
+    height: 306px;
+    margin-bottom: 5px;
+}
+#messageBox textarea {
+    color: black;
+    padding-right: 5px;
+    font-size: 20px;
+    resize: none;
+    width: 677px;
+    height: 300px;
+    margin-left: 0px;
+}   
+#messageBox input[type="submit"] {
+    font-family: "exo2-regular";
+    width: 120px;
+    height: 45px;
+    color:white;
+    margin-left: 288px;
+    background-color:#B53A28;
+    border: none;
+    margin-top:10px;
+    margin-bottom: 20px;
+    border-radius: 0px;
+    cursor:pointer;
+    font-size:15px;
+    transition: 0.5s ease;
+    
+}
+#messageBox input[type="submit"]:hover {
+    background-color:white;
+    color:#b53a28;
+}
+#to {
+    color: #b53a28;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    height: 55px;
+    font-size: 35px;
+    margin-bottom: -10px;
+}
+#to span {
+    font-size: 25px;
+    color: white;
+}
+#close {
+    background:url("../images/x-factor.png");
+    display: inline-block;
+    background-size:cover;
+    width:30px;
+    float:right;
+    margin-right: -35px;
+    margin-top: -5px;
+    height:30px;
+    cursor:pointer;
+}
+#messageBox label {
+    font-size: 25px;
+}
+#messageBox input[type='text'] {
+    display: inline-block;
+    height: 35px;
+    width: 97.4%;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+#send-message {
+    font-family:"exo2-regular";
+    width: 150px;
+    height: 50px;
+    margin-left: 82%;
+    background-color:#B53A28;
+    border: none;
+    border-radius: 0px;
+    cursor:pointer;
+    font-size:15px;
+    transition: 0.5s ease;
+}
+#send-message:hover {
+    background-color:black;
+    color:#b53a28;
+}
+#sender-link {
+    display: inline-block;
+    height: 36px;
+    text-decoration: none;
+    transition: 0.5s ease;
+}
+#sender-link:hover {
+    background-color: rgb(190,190,190);
+}
+#sender-email {
+    color: black;
+}
+#received, #sent {
+    display: inline-block;
+    width: 50%;
+    height: 80px;
+    text-align: center;
+}
+#sent {
+    float: right;
+  
+}
+#received button, #sent button {
+    font-family: "exo2-regular";
+    font-size: 20px;    
+    width: 100%;
+    height: 80px;
+    color:black;;
+    background-color:rgba(0,0,0,0);
+    border: none;
+    border-radius: 0px;
+    cursor:pointer;
+    transition: 0.5s ease;
+}
+#received button {  
+   border-right: 1px solid white;
+}
+#sent button {
+    background-color: rgba(221,221,221,1);
+}
+
+#pair-buttons {
+    border-bottom: 1px solid white;
+}
+@media only screen
+and (min-width : 320px) 
+and (max-width : 1305px) { 
+    #messagebox {
+        width: 64%;
+    }
+
+}
+@media only screen
+and (min-width : 320px) 
+and (max-width : 1090px) { 
+    #messagebox {
+        width: 63%;
+    }
+
+}
+
+@media only screen
+and (min-width : 320px) 
+and (max-width : 800px),
+screen and (-webkit-min-device-pixel-ratio: 2){ 
+
+    main{
+        height:1300px;
+        width: 100%;
+    }
+    
+    #container {
+        height: 100%;
+        width:95%;
+    }
+    #senders {
+        float: left;
+        height: 100%;
+        width:42%;
+        overflow: auto;
+    }
+    .message {
+        font-size: 33px;
+    }
+    .message h3 {
+        font-size:45px;
+    }
+    
+    #messagebox{
+        width: 500px;
+        padding-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    #messagebox span {
+        font-size: 40px;
+    }
+    #messagebox span h2 {
+        font-size:58px;
+    }
+    #messagebox h3 {
+        display: block;
+        word-wrap: break-word;
+        font-size: 50px;
+    }
+    #messagebox p {
+        width: 95%;
+    }
+    #message-text {
+        width:63%;
+        word-wrap: break-word;
+        height:auto;
+        font-size: 30px;
+    }
+    
+    #messageBox{
+        height: auto;
+        padding-bottom: 10px;
+    }
+    #messageBox textarea {
+        color: black;
+        padding-right: 5px;
+        font-size: 40px;
+        resize: none;
+        width: 677px;
+        height: 300px;
+        margin-left: 0px;
+    }   
+    #messageBox input[type="submit"] {
+        width: 200px;
+        height: 70px;
+        font-size:30px;
+        
+    }
+    #to {
+        font-size: 55px;
+        padding-bottom: 10px;
+    }
+    #to span {
+        font-size: 40px;
+        color: white;
+    }
+    #close {
+        width:50px;
+        height:50px;
+    }
+    #messageBox label {
+        font-size: 40px;
+    }
+    #messageBox input[type='text'] {
+        height: 55px;
+        width: 97.4%;
+        font-size: 40px;
+    }
+    #sender-link {
+        height: auto;
+    }
+    #sender-email {
+        height: auto;
+    }
+    #received, #sent {
+        width: 100%;
+        height: 100px;
+        border: none;
+    }
+    #received button, #sent button {
+        font-size: 30px;    
+        width:100%;
+        height:100px;
+        padding: 15px;
+    }
+    #received button{
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+        border-bottom: 1px solid white;
+    }
+    #sent button {
+        margin-left: -2px;
+    }
+    .message {
+        padding: 3px;
+    }
+    #pair-buttons {
+        height: 202px;
+    }
+
+}

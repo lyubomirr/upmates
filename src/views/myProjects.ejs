@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Projects</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/styles/myProjects.css">
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
+</head>
+
+<body>
+     <% include templates/nav.ejs %>
+    <% if(user) { %> 
+        <% include templates/bar.ejs %>
+    <% } %>
+
+    <main>
+        <div id="buttons">
+            <a href="/project/my-applications">
+                <button>My Applications</button>
+            </a>
+            <a href="/project/my-applicants">
+                <button>My Applicants</button>
+            </a>
+            <a href="/project/current-projects">
+                <button>My Current Projects</button>
+            </a>
+        </div>
+    </main>
+ 
+
+
+    <% include templates/footer.ejs %>
+</body>
+
+
+</html>

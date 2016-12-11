@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%=profile.firstName%> <%=profile.lastName%></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/styles/profile.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <% include templates/nav.ejs %>
+    <% if(user) { %> 
+        <% include templates/bar.ejs %>
+    <% } %>
+
+    <main>
+        <div id="container">
+
+            <div id="info-containter">
+                <ul type="none" id="main-info">
+                    <li>
+                        <div id="profile-image">
+                            <img src="<%=profile.imageURL%>">
+                        </div>
+                    </li>
+                    <br>
+                    <li id="name"> <%=profile.firstName%>
+                        <br> <%=profile.lastName%>
+                    </li>
+                    <br>
+                    <li id="country"><%=profile.country%></li>
+                    <br>
+                    <li id="position"><%=profile.position%></li>
+                    <br>
+                    <li id="e-mail"><%=profile.email%></li>
+                    <br>
+                    <li id="member-since">Member Since: <br> <%=profile.createdOn%></li>
+                    <br>
+                    <li>
+                        <button id="send-message">
+                            Send Message
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div id='other-info'>
+                <div id="about-me" class="template">
+                    <h3>About me</h3>
+                    <p id="about-me-text">
+                        <%=profile.aboutMe%>
+                    </p>
+                </div>
+                <div id="skills" class="template">
+                    <h3>Skills</h3>
+                    <p id="skills-text">
+                        <%=profile.skills%>
+                    </p>
+                </div>
+                <div class='template' id='work-terms'>
+                    <h3>Work terms</h3>
+                    <p id="work-terms-text">
+                        <%=profile.workTerms%>
+                    </p>
+                </div>
+                <div class="template" id="bio">
+                    <h3>Bio</h3>
+                    <ul type='none'>
+                        <li>Age:<%=profile.age%></li>
+                        <li>Gender: <%=profile.gender%></li>
+                        <li>Education: <%=profile.education%></li>
+                        <li>City: <%=profile.city%></li>
+                        <li>Phone: <%=profile.phone%></li>
+                        <li>Languages: <%=profile.languages%></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div id='messageBox'>
+        <span id='close'></span>
+         <p id='to'><span>To:</span><%=profile.firstName%> <%=profile.lastName%></p>
+        <form action="/profile/id/<%=profile._id%>/send-message" method="post">
+            <label for='title'>Title:</label>
+            <input type='text' name='title' maxlength="70" required>
+            <div id='wrapper'>            
+            <textarea name='messageBody' maxlength="1500" required></textarea>
+            </div>
+            <input type='submit' value='Send Message'>
+        </form>
+    </div>
+
+    <% include templates/footer.ejs %>
+
+    <script>
+        var aboutMe = document.getElementById('about-me-text');
+        var skills = document.getElementById('skills-text');
+        var workTerms = document.getElementById('work-terms-text');
+        var date = document.getElementById('member-since');
+        
+        aboutMe.innerHTML = aboutMe.innerHTML.substring(0,1700);
+        skills.innerHTML = skills.innerHTML.substring(0,500);
+        workTerms.innerHTML = workTerms.innerHTML.substring(0,550);
+        date.innerHTML = date.innerHTML.substring(0,34);
+    </script>
+    <script>
+        $('#send-message').click( function() {
+            $('#messageBox').fadeIn(300);
+            $('nav').css('opacity','0.8');
+            $('#bar').css('opacity','0.8');
+            $('main').css('opacity','0.5');
+            $('#page-footer').css('opacity','0.5');
+        });
+        $('#close').click( function() {
+            $('#messageBox').fadeOut(300);
+            $('nav').css('opacity','1');
+            $('#bar').css('opacity','1');
+            $('main').css('opacity','1');
+            $('#page-footer').css('opacity','1');
+            
+        });   
+    </script>
+</body>
+
+
+
+
+
+
+</html>

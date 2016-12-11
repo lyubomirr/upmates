@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My messages</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/styles/sent-messages.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
+    
+</head>
+
+<body>
+    <% include templates/nav.ejs %>
+    <% if(user) { %> 
+        <% include templates/bar.ejs %>
+    <% } %>
+
+
+  <main>
+        
+        <div id="container">
+                
+            <div id='senders'>
+                
+                <div id='pair-buttons'>
+                    <a href='/profile/my-messages' id='received'>
+                        <button>
+                            Received Messages
+                        </button>
+                    </a>
+                        <a href='/profile/sent-messages' id='sent'>
+                        <button >
+                            Sent Messages
+                        </button>
+                        </a>
+                 
+                </div>
+                <div id='scroll'>
+                    <% for( var i = 0; i < messages.length; i++ ) { %>
+                        <div class='message' id='<%=messages[i]._id%>'>
+                            <h3><%=messages[i].reciever.firstName%> <%=messages[i].reciever.lastName%></h3>
+                            <span><%=messages[i].title%></span>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+            <% if(messages.length > 0) { %>
+                <div id='messagebox'>
+                    <span>
+                        To: 
+                        <a id='sender-link' href='/profile/id/<%=messages[0].reciever.id%>' >
+                            <h2 id='sender'><%=messages[0].reciever.firstName%> <%=messages[0].reciever.lastName%></h2>
+                        </a>
+                        <br> 
+                        <span id='sender-email'><%=messages[0].reciever.email%></span>
+                        
+                    </span>
+                    <hr>
+                    <h3 id='message-title'><%=messages[0].title%></h3>
+                    <p id='message-text'>
+                        <%=messages[0].body%>
+                    </p>
+                </div>
+            <% } %>
+        </div>
+  </main>
+
+   <% include templates/footer.ejs %>
+    
+     <script>
+        <% for( var i = 0; i < messages.length; i++ ) { %>
+            $("#<%=messages[i]._id%>").click(function() {
+                    $("#message-text").html(`<%=messages[i].body%>`);
+                    $("#sender").html("<%=messages[i].reciever.firstName%> <%=messages[i].reciever.lastName%>");
+                    $("#sender-email").html("<%=messages[i].reciever.email%>");
+                    $("#message-title").html("<%=messages[i].title%>");
+                    $("#to").html("<span>To:</span> <%=messages[i].reciever.firstName%> <%=messages[i].reciever.lastName%>");
+                    $("#sender-link").attr("href", "/profile/id/<%=messages[i].reciever.id%>");
+            });
+         <% } %>
+         $('#send-message').click(function() {
+             $('#messageBox').fadeIn(300);
+             $('nav').css('opacity','0.5');
+             $('#bar').css('opacity','0.5');
+             $('main').css('opacity','0.3');
+             $('footer').css('opacity','0.3');
+         });
+         $('#close').click(function() {
+             $('#messageBox').fadeOut(300);
+             $('nav').css('opacity','1');
+             $('#bar').css('opacity','1');
+             $('main').css('opacity','1');
+             $('footer').css('opacity','1');
+         });
+    </script>
+</body>
+
+
+</html>

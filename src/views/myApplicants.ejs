@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Applicants</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/styles/myApplicants.css">
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
+</head>
+
+<body>
+    <% include templates/nav.ejs %>
+    <% if(user) { %> 
+        <% include templates/bar.ejs %>
+    <% } %>
+
+
+  <main>
+        <div id="container">
+            <div id="firstdiv">
+                <p id="projectsP">My Applicants</p>
+                <hr>
+            <div id="projects">
+                <% for(var i = 0; i < projects.length; i++) { %>
+                    <% if(projects[i].applicants.length != 0) { %>
+                        <div class="project">
+                            <a href='/project/id/<%=projects[i]._id%>' class="title"> <%=projects[i].title%> </a>
+                            <ul class='applicants'>
+                            <% for (var j = 0; j < projects[i].applicants.length; j++) { %>
+                                <li>
+                                    <a href='/profile/id/<%=projects[i].applicants[j].id%>' class='profile-route'>
+                                    <%=projects[i].applicants[j].firstName%> <%=projects[i].applicants[j].lastName%>
+                                    </a>
+                    
+                                    <a href='/project/id/<%=projects[i]._id%>/reject/<%=projects[i].applicants[j].id%>' class='reject-button'>
+                                        <button>
+                                            Reject
+                                        </button>
+                                    </a>
+                                    <a href='/project/id/<%=projects[i]._id%>/accept/<%=projects[i].applicants[j].id%>' class='accept-button'>
+                                        <button >
+                                            Accept
+                                        </button>
+                                    </a>
+                                </li>
+                                <br>
+                            <% } %>
+                            </ul>
+                        </div>
+                    <% } %>
+                <% } %>
+            </div>
+      </div>
+  </main>
+
+
+    <% include templates/footer.ejs %>
+</body>
+
+<script>
+   var descrp = document.getElementsByClassName("description");
+    for(var i = 0; i< descrp.length; i++) {
+        descrp[i].innerHTML = descrp[i].innerHTML.substr(0,250) + "...";
+    }
+      
+</script>
+</html>

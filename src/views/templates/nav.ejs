@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="/styles/nav.css" />
+<nav id="main-nav">
+    <a href="/">
+        <div id="logo">
+        </div>
+    </a>
+    <ul id='menu'>
+        <% if(!user) { %>
+        <li>
+            <a href="#info">About</a>
+        </li>
+        <% } %>
+        
+        <li>
+            <% if(user) { %>
+            <a href="/profile" id='image'>
+                <%=user.firstName%>
+            </a>
+            <% } else { %>
+            <a href="#" id="sign-up-button" >
+                Sign Up
+            </a>
+            <% } %>
+            
+        </li>
+        <li>
+            <% if(user) { %>
+            <a href="/auth/logOut" >
+                Log Out
+            </a>
+            <% } else { %>
+            <a href="#" id="log-in-button" >
+                Log In
+            </a>
+            <% } %>
+            
+        </li>
+    </ul>
+</nav>

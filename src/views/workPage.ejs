@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/styles/work-page.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <% include templates/nav.ejs %>
+    <% if(user) { %> 
+        <% include templates/bar.ejs %>
+    <% } %>
+
+    <main>
+        <div id="container">
+            <h1 id='project-title'><%=project.title%></h1>
+            <% if(user._id == project.poster.id) { %>
+            <a href='/project/id/<%=project._id%>/delete' id='delete-project'></a>
+            <% } %>
+            <h2 id='posted-by'>Posted by: <%=project.poster.firstName%> <%=project.poster.lastName%></h2>
+            <hr>
+
+            <div class='contain' id='to-do'>
+                <h1>To Do</h1>
+                <hr class='inner-hr'>
+                <div class="scroll">
+                    <% for ( var  i = 0; i < project.todo.length; i++ ) { %>
+                        <div class='box'>
+                            <div class='info-div' id='<%=project.todo[i]._id%>-info'>
+                                Posted by:
+                                <br>
+                                <span class='names'><%=project.todo[i].postedBy%></span>
+                            </div>
+                            <p>
+                               <img class='info' src='/images/info.png' id='<%=project.todo[i]._id%>'>
+                               <%=project.todo[i].body%>
+                            </p>
+                            <a href='/project/id/<%=project._id%>/right/<%=project.todo[i]._id%>' class='move-right'>
+                            </a>
+                            <a href='/project/id/<%=project._id%>/remove/<%=project.todo[i]._id%>' class="close">
+                            </a>
+                        </div>
+                    <% } %>
+                </div>
+                <div class='form'>
+                    <form action='/project/id/<%=project._id%>/todo/add' method="post">
+                        <textarea name='body' maxlength="100"></textarea>
+                        <br>
+                        <input type='submit' value='Add'>
+                    </form>
+                </div>
+            </div>  
+            
+            <div class='contain' id='doing'>
+                <h1>Doing</h1>
+                <hr class='inner-hr'>
+                <div class="scroll">
+                    <% for ( var  i = 0; i < project.doing.length; i++ ) { %>
+                        <div class='box'>
+                            <div class='info-div' id='<%=project.doing[i]._id%>-info'>
+                                Posted by:
+                                <br>
+                                <span class='names'><%=project.doing[i].postedBy%></span>
+                                <br>
+                                Taken by:
+                                <br>
+                                <span class='names'><%=project.doing[i].takenBy%></span>
+                            </div>
+                            <p>
+                                <img class='info' src='/images/info.png' id='<%=project.doing[i]._id%>'>
+                                <%=project.doing[i].body%>
+                            </p>
+                            <form action="/project/id/<%=project._id%>/submit-progress/<%=project.doing[i]._id%>" method="post">
+                                <% if(user._id == project.doing[i].takenById)  { %>
+                                      <input type="range" min='0' max='100' class='range' name='progress' value="<%=project.doing[i].progress%>" >
+                                <% }  else { %>
+                                    <input type="range" min='0' max='100' class='range2' name='progress' value="<%=project.doing[i].progress%>" disabled>
+                                <% } %>
+                                <% if(user._id == project.doing[i].takenById)  { %>
+                                      <input type='submit' class='tick' value="">
+                                <% } %>
+                            </form>
+                            <a href='/project/id/<%=project._id%>/left/<%=project.doing[i]._id%>' class='move-left'>
+                            </a>
+                            <a href='/project/id/<%=project._id%>/right/<%=project.doing[i]._id%>' class='move-right'>
+                            </a>
+                            <a href='/project/id/<%=project._id%>/remove/<%=project.doing[i]._id%>' class="close">
+                            </a>
+                        </div>
+                    <% } %>
+                
+                </div>
+                <div class='form'>
+                    <form action='/project/id/<%=project._id%>/doing/add' method="post">
+                        <textarea name='body' maxlength="100"></textarea>
+                        <br>
+                        <input type='submit' value='Add'>
+                    </form>
+                </div>
+            </div>
+
+            <div class='contain' id='done1'>
+                <h1>Done</h1>
+                <hr class='inner-hr'>
+                <div class="scroll">
+                    <% for ( var  i = 0; i < project.done.length; i++ ) { %>
+                        <div class='box'>
+                            <div class='info-div' id='<%=project.done[i]._id%>-info'>
+                                Posted by:
+                                <br>
+                                <span class='names'><%=project.done[i].postedBy%></span>
+                                <br>
+                                Done by:
+                                <br>
+                                <span class='names'><%=project.done[i].takenBy%></span>
+                            </div>
+                            <p>
+                                <img class='info' src='/images/info.png' id='<%=project.done[i]._id%>'>
+                                <%=project.done[i].body%>
+                            </p>
+                            <a href='/project/id/<%=project._id%>/left/<%=project.done[i]._id%>' class='move-left'>
+                            </a>
+                            <a href='/project/id/<%=project._id%>/remove/<%=project.done[i]._id%>' class="close">
+                            </a>
+                        </div>
+                    <% } %>
+                </div>
+                <div class='form'>
+                    <form action='/project/id/<%=project._id%>/done/add' method="post">
+                        <textarea name='body' maxlength="100"></textarea>
+                        <br>
+                        <input type='submit' value='Add'>
+                    </form>
+                </div>
+            </div>
+            
+            <div id='last' class="contain">
+                <h1>Members</h1>
+                <hr>
+                <div id='members'>
+                    <ul  type='none'>
+                        <% for( var i = 0; i < project.members.length; i++ )  { %>
+                            <li>
+                                <a href='/profile/id/<%=project.members[i].id%>'>
+                                    <img src='<%=project.members[i].imageURL%>'>
+                                    <span><%=project.members[i].firstName%> <%=project.members[i].lastName%></span>
+                                </a>
+                                <% if((user._id == project.poster.id || user._id == project.members[i].id ) && (project.poster.id != project.members[i].id) ) { %>
+                                <a href='/project/id/<%=project._id%>/kick/<%=project.members[i].id%>' id='kick'>
+                                </a>
+                                <% } %>
+                            </li>
+                        <% } %>
+                    </ul>
+                </div>
+                <div id='chat'>
+                    <div id='messages-box'>
+                        
+                    </div>
+                </div>
+                <div class='form'>
+                    <form id='message-form'>
+                    <input type='text' placeholder="Press ENTER to send" id='message' autocomplete="off">
+                    </form>
+                </div>
+            </div>
+            
+            <div class='contain' id='done2'>
+                <h1>Done</h1>
+                <hr class='inner-hr'>
+                <div class="scroll">
+                    <% for ( var  i = 0; i < project.done.length; i++ ) { %>
+                        <div class='box'>
+                            <div class='info-div' id='<%=project.done[i]._id%>-info-2'>
+                                Posted by:
+                                <br>
+                                <span class='names'><%=project.done[i].postedBy%></span>
+                                <br>
+                                Done by:
+                                <br>
+                                <span class='names'><%=project.done[i].takenBy%></span>
+                            </div>
+                            <p>
+                                <img src='/images/info.png' class='info' id='<%=project.done[i]._id%>-2'>
+                                <%=project.done[i].body%>
+                            </p>
+                            <a href='/project/id/<%=project._id%>/left/<%=project.done[i]._id%>' class='move-left'>
+                            </a>
+                            <a href='/project/id/<%=project._id%>/remove/<%=project.done[i]._id%>' class="close">
+                            </a>
+                        </div>
+                    <% } %>
+                </div>
+                <div class='form'>
+                    <form action='/project/id/<%=project._id%>/done/add' method="post">
+                        <textarea name='body'></textarea>
+                        <br>
+                        <input type='submit' value='Add'>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <% include templates/footer.ejs %>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://upmates-lyubomir.rhcloud.com:8000');
+        $('#message-form').submit(function() {
+            socket.emit('chat message', {name: '<%=user.firstName%>', body: $('#message').val() });
+            $('#message').val('');
+            return false;
+        }); 
+        
+        socket.on('new message', function(msg) {
+            $('#messages-box').append('<p><span>' +  msg.name + ': </span>'  + msg.body + '</p>');
+            $('#messages-box').animate({ scrollTop: $(document).height() }, "slow");
+            $('#messages-box').stop().animate({
+                scrollTop: $("#messages-box")[0].scrollHeight
+            }, 600);
+
+        });
+    </script>
+    <script>
+        <% for( var i = 0; i < project.todo.length; i++ ) { %>
+            $("#<%=project.todo[i]._id%>").mouseenter(function() {
+                $('#<%=project.todo[i]._id%>-info').css('display', 'inline-block');     
+            });
+    
+            $("#<%=project.todo[i]._id%>").mouseleave(function() {
+                $('#<%=project.todo[i]._id%>-info').css('display', 'none');     
+            });
+        <% } %>
+        
+        <% for( var i = 0; i < project.doing.length; i++ ) { %>
+            $("#<%=project.doing[i]._id%>").mouseenter(function() {
+                $('#<%=project.doing[i]._id%>-info').css('display', 'inline-block');     
+            });
+        
+            $("#<%=project.doing[i]._id%>").mouseleave(function() {
+                $('#<%=project.doing[i]._id%>-info').css('display', 'none');     
+            });
+        <% } %>
+        
+        <% for( var i = 0; i < project.done.length; i++ ) { %>
+            $("#<%=project.done[i]._id%>").mouseenter(function() {
+                $('#<%=project.done[i]._id%>-info').css('display', 'inline-block');     
+            });
+        
+            $("#<%=project.done[i]._id%>").mouseleave(function() {
+                $('#<%=project.done[i]._id%>-info').css('display', 'none');     
+            });
+        <% } %>
+        
+        <% for( var i = 0; i < project.done.length; i++ ) { %>
+            $("#<%=project.done[i]._id%>-2").mouseenter(function() {
+                $('#<%=project.done[i]._id%>-info-2').css('display', 'inline-block');     
+            });
+        
+            $("#<%=project.done[i]._id%>-2").mouseleave(function() {
+                $('#<%=project.done[i]._id%>-info-2').css('display', 'none');     
+            });
+        <% } %>
+    </script>
+</body>
+
+
+
+
+
+
+</html>

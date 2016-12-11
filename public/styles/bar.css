@@ -1,0 +1,57 @@
+#bar{
+    z-index: 2;
+    float: right;
+    display: inline;
+    background-color: #B53A28;
+    width: 100%;
+    margin-top: 59px;
+    position:fixed;
+}
+.bar-links:first-child {
+    margin-left: 20px;
+}
+
+.bar-button{
+    transition: 0.5s ease;
+    cursor: pointer;
+    float: right;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    padding: 10px;
+    font-family: "exo2-regular";
+}
+
+.bar-button:hover{
+    cursor: pointer;
+    background-color: black;
+    color: #B53A28;
+}
+
+.bar-links{
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.bar-links:hover{
+    cursor: pointer;
+    text-decoration: none;
+    color: #B53A28;
+}
+#left {
+    float:left;
+}
+
+@media only screen
+and (min-width : 320px) 
+and (max-width : 800px),
+screen and (-webkit-min-device-pixel-ratio: 2){
+
+.bar-button{
+    font-size: 25px;
+}
+
+
+}

@@ -1,0 +1,186 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+ margin: 0;
+ padding: 0;
+ border: 0;
+ font-size: 100%;
+ font: inherit;
+ vertical-align: baseline;
+}
+@font-face {
+    src: url("../fonts/Exo2-RegularCondensed.otf");
+     font-family:"exo2-regular";
+}
+@font-face {
+    src: url("../fonts/Exo2-SemiBoldCondensed.otf");
+     font-family:"exo2-semibold";
+}
+body {
+     font-family:"exo2-regular";
+}
+
+main {
+    padding-top: 60px;
+    padding-bottom:60px;
+	height: 700px;
+	width: 100%;
+	background: url("../images/background-projects.jpg");
+	background-size: cover;
+}
+#container {
+ 
+    border-radius: 5px;
+    margin:0 auto;
+    height: 100%;
+    width: 85%;
+    background-color: rgba(221,221,221,0.7);
+}
+#accounts, #projects {
+    margin-top: 50px;
+    display: inline-block;
+    width: 40%;
+    height: 600px;
+}
+#accounts {
+    margin-left: 80px;
+    border-right: 1px white solid;
+}
+#projects {
+    float:right;
+    margin-right: 80px;
+    border-left: 1px white solid;
+}
+hr {
+	border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));    margin-bottom: 8px;
+}
+h1 {
+    text-align: center;
+    font-size: 35px;
+    color: #b53a28;
+}
+.account, .project {
+    text-align: center;
+    padding: 7px;
+    font-size: 30px;
+    display: inline-block;
+    width: 96.9%;
+    height: 80px;
+    border-bottom: 1px solid white;
+}
+.account p, .project p {
+    display: inline;
+    width:80%;
+}
+.project {
+    word-wrap: break-word;
+    height: auto;
+    max-height: 125px;
+}
+.scroll {
+    display: inline-block;
+    overflow:auto;
+    height: 530px;
+    width:100%;
+}
+.delete button{
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    background-color: #b53a28;
+    border: none;
+    transition: 0.5s ease;
+}
+.delete button:hover {
+    background-color: black;
+    color: #b53a28;
+    cursor: pointer;
+}
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+.name {
+    text-decoration: none;
+    color:black;
+    transition: 0.5s ease;
+}
+.name:hover {
+    background-color: rgb(221,221,221);
+}
+
+@media only screen
+and (min-width : 320px) 
+and (max-width : 1150px),
+screen and (-webkit-min-device-pixel-ratio: 2)
+{ 
+
+    main {
+    height: auto;
+    width: 100%;
+}
+#container {
+    height: 1900px;
+    width: 85%;
+}
+#accounts, #projects {
+    margin-top: 50px;
+    display: block;
+    width: 98%;
+    height: auto;
+}
+#accounts {
+    margin-left: 0px;
+    padding-top: 20px;
+    border: 0px;
+}
+#projects {
+    margin-right: 0px;
+    border: 0px;
+}
+
+h1 {
+    font-size: 60px;
+}
+.account, .project {
+    font-size: 50px;
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid white;
+}
+.scroll {
+    height: 800px;
+}
+.delete button{
+    margin-top: 20px;
+    width: 200px;
+    height: 50px;
+    font-size:40px;
+}
+
+
+
+}
